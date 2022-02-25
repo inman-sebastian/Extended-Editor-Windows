@@ -23,7 +23,7 @@ MyExtendedEditorWindow/         # Root directory.
 
 ## Samples
 
-### Sample CS Template
+### Sample C# Template
 
 ```c#
 using UnityEngine;
