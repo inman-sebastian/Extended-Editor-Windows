@@ -1,6 +1,6 @@
 ﻿using UnityEngine.UIElements;
 
-namespace I {
+namespace ExtendedEditorWindows {
     
     public class Element {
 
@@ -23,24 +23,32 @@ namespace I {
             set => _element.focusable = value;
         }
 
-        public Element(string name, VisualElement template) {
-            _element = template.Q<VisualElement>(name);
+        public Element(string name) {
+            
+            _element = UnityEditor.EditorWindow.focusedWindow.rootVisualElement.Q<VisualElement>(name);
+            
         }
         
         public void AddClass(string className) {
+            
             _element.AddToClassList(className);
+            
         }
         
         public void RemoveClass(string className) {
+            
             _element.RemoveFromClassList(className);
+            
         }
 
         public void ToggleClass(string className) {
+            
             if (_element.ClassListContains(className)) {
                 RemoveClass(className);
             } else {
                 AddClass(className);
             }
+            
         }
 
     }

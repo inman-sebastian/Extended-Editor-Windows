@@ -1,9 +1,9 @@
 using System;
-using UnityEngine.UIElements;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-namespace I {
+namespace ExtendedEditorWindows {
 
     public abstract class EditorWindow<T> : EditorWindow where T : EditorWindow {
 
@@ -41,14 +41,14 @@ namespace I {
          * Creates a reference to a visual element within the editor window.
          */
         protected Element Element(string elementName) {
-            return new Element(elementName, rootVisualElement);
+            return new Element(elementName);
         }
         
         /**
          * Creates a reference to an image within the editor window.
          */
         protected Image Image(string elementName) {
-            return new Image(elementName, rootVisualElement);
+            return new Image(elementName);
         }
 
         /**
@@ -58,7 +58,7 @@ namespace I {
             string fieldName, 
             TFieldType defaultValue, 
             EventCallback<Field<TFieldType>> changeEvent) {
-            return new Field<TFieldType>(fieldName, defaultValue, rootVisualElement, changeEvent);
+            return new Field<TFieldType>(fieldName, defaultValue, changeEvent);
         }
         
         /**
@@ -68,7 +68,7 @@ namespace I {
             string fieldName,
             TEnumType defaultValue, 
             EventCallback<Dropdown<TEnumType>> changeEvent) where TEnumType : Enum {
-            return new Dropdown<TEnumType>(fieldName, defaultValue, rootVisualElement, changeEvent);
+            return new Dropdown<TEnumType>(fieldName, defaultValue, changeEvent);
         }
         
         /**
@@ -77,7 +77,7 @@ namespace I {
         protected Asset<TAssetType> Asset<TAssetType>(
             string selectorName, 
             EventCallback<Asset<TAssetType>> changeEvent) where TAssetType : class {
-            return new Asset<TAssetType>(selectorName, rootVisualElement, changeEvent);
+            return new Asset<TAssetType>(selectorName, changeEvent);
         }
 
         /**
@@ -86,7 +86,7 @@ namespace I {
         protected Button Button(
             string buttonName, 
             Action<Button> clickEvent) {
-            return new Button(buttonName, rootVisualElement, clickEvent);
+            return new Button(buttonName, clickEvent);
         }
 
         protected void SendEvent<TWindow>(string eventName) where TWindow : EditorWindow {

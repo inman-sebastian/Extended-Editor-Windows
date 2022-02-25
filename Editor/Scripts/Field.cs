@@ -1,23 +1,22 @@
 ﻿using UnityEngine.UIElements;
 
-namespace I {
+namespace ExtendedEditorWindows {
     
     public class Field<T> {
 
-        public BaseField<T> field;
+        public readonly BaseField<T> field;
         public T value;
 
-        public Field(
-            string name, 
-            T defaultValue, 
-            VisualElement template, 
-            EventCallback<Field<T>> changeEvent) {
-            field = template.Q<BaseField<T>>(name);
+        public Field(string name, T defaultValue, EventCallback<Field<T>> changeEvent) {
+            
+            field = UnityEditor.EditorWindow.focusedWindow.rootVisualElement.Q<BaseField<T>>(name);
             field.value = defaultValue;
+            
             field.RegisterCallback<ChangeEvent<T>>(@event => {
                 value = @event.newValue;
                 changeEvent(this);
             });
+            
         }
 
         public void ClampValue(T minValue, T maxValue) {

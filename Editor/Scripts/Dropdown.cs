@@ -2,19 +2,15 @@
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace I {
+namespace ExtendedEditorWindows {
     
     public class Dropdown<TEnum> where TEnum : Enum {
 
         public TEnum selected;
 
-        public Dropdown(
-            string name, 
-            TEnum defaultValue, 
-            VisualElement template, 
-            EventCallback<Dropdown<TEnum>> changeEvent) {
+        public Dropdown(string name, TEnum defaultValue, EventCallback<Dropdown<TEnum>> changeEvent) {
             
-            var element = template.Q<EnumField>(name);
+            var element = UnityEditor.EditorWindow.focusedWindow.rootVisualElement.Q<EnumField>(name);
             element.value = defaultValue;
             
             element.RegisterCallback<ChangeEvent<Enum>>(@event => {

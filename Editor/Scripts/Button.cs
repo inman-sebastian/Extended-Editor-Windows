@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine.UIElements;
 
-namespace I {
+namespace ExtendedEditorWindows {
     
     public class Button {
 
@@ -11,9 +11,11 @@ namespace I {
             set => _element.SetEnabled(value);
         }
 
-        public Button(string name, VisualElement template, Action<Button> clickEvent) {
-            _element = template.Q<UnityEngine.UIElements.Button>(name);
+        public Button(string name, Action<Button> clickEvent) {
+            
+            _element = UnityEditor.EditorWindow.focusedWindow.rootVisualElement.Q<UnityEngine.UIElements.Button>(name);
             _element.RegisterCallback<ClickEvent>(e => clickEvent(this));
+            
         }
 
     }

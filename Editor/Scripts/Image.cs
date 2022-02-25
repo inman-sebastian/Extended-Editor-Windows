@@ -1,7 +1,7 @@
-﻿using UnityEngine.UIElements;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UIElements;
 
-namespace I {
+namespace ExtendedEditorWindows {
     
     public class Image {
 
@@ -11,8 +11,10 @@ namespace I {
             set => _element.image = value;
         }
 
-        public Image(string name, VisualElement template) {
-            _element = template.Q<UnityEngine.UIElements.Image>(name);
+        public Image(string name) {
+            
+            _element = UnityEditor.EditorWindow.focusedWindow.rootVisualElement.Q<UnityEngine.UIElements.Image>(name);
+            
         }
 
     }
