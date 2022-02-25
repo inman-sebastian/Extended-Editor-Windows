@@ -7,7 +7,15 @@ namespace ExtendedEditorWindows {
 
     public abstract class ExtendedEditorWindow<T> : EditorWindow where T : EditorWindow {
 
-        private const string Styles = "Packages/com.sebastian-inman.extended-editor-windows/Editor/Styles/reset.uss";
+        private readonly string[] Stylesheets = {
+            "Packages/com.sebastian-inman.extended-editor-windows/Editor/Styles/variables.uss",
+            "Packages/com.sebastian-inman.extended-editor-windows/Editor/Styles/helpers.uss",
+            "Packages/com.sebastian-inman.extended-editor-windows/Editor/Styles/window.uss",
+            "Packages/com.sebastian-inman.extended-editor-windows/Editor/Styles/field.uss",
+            "Packages/com.sebastian-inman.extended-editor-windows/Editor/Styles/button.uss",
+            "Packages/com.sebastian-inman.extended-editor-windows/Editor/Styles/colorfield.uss",
+            "Packages/com.sebastian-inman.extended-editor-windows/Editor/Styles/helpbox.uss"
+        };
 
         private void CreateGUI() {
 
@@ -17,12 +25,18 @@ namespace ExtendedEditorWindows {
             
             // Define the paths for all UXML and USS assets associated with the editor window.
             var editorTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>($"{editorPath}.uxml");
-            var globalStylesheet = AssetDatabase.LoadAssetAtPath<StyleSheet>(Styles);
             var editorStyleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>($"{editorPath}.uss");
 
-            // Instantiate the editor template and add stylesheets.
+            // Add the template for this editor window.
             rootVisualElement.Add(editorTemplate.Instantiate());
-            rootVisualElement.styleSheets.Add(globalStylesheet);
+
+            // Add global stylesheets to this editor window.
+            foreach(var stylesheet in Stylesheets) {
+                var asset = AssetDatabase.LoadAssetAtPath<StyleSheet>(stylesheet);
+                rootVisualElement.styleSheets.Add(asset);
+            }
+            
+            // Add the stylesheet for this editor window.
             rootVisualElement.styleSheets.Add(editorStyleSheet);
 
             Initialize();

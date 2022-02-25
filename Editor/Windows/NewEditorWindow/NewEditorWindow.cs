@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.IO;
-using System.Threading.Tasks;
 using UnityEditor;
+using System.Threading.Tasks;
 using ExtendedEditorWindows;
-using Unity.EditorCoroutines.Editor;
-using UnityEngine;
 
-public class NewExtendedEditorWindowPrompt : ExtendedEditorWindow<NewExtendedEditorWindowPrompt> {
+public class NewEditorWindow : ExtendedEditorWindow<NewEditorWindow> {
         
-    [MenuItem("Assets/Create/Extended Editor Window", false, 51)]
+    [MenuItem("Extended Editor Window/New Extended Editor Window", false, 51)]
     public static void Open() => OpenWindow("New Editor Window", true);
 
     private bool _busy = false;
@@ -25,7 +22,7 @@ public class NewExtendedEditorWindowPrompt : ExtendedEditorWindow<NewExtendedEdi
     private string _filePath;
 
     protected override void Initialize() {
-        
+
         _createButton = Button("CreateEditorWindow", button => Generate());
         _createButton.enabled = false;
 

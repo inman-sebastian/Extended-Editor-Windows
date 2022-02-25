@@ -67,7 +67,29 @@ public class ExampleWindow : ExtendedEditorWindow<ExampleWindow> {
 </UXML>
 ```
 
+## Customization
+The following USS variables can be overwritten in order to customize the theme of your Editor Window:
+
+### Window Variables
+
+| Variable           | Default Value | Description                                       |
+|--------------------|---------------|---------------------------------------------------|
+| `--window-padding` | 16px          | The amount of padding the main editor window has. |
+
+### Field Input Variables
+
+| Variable                           | Default Value | Description                                                    |
+|:-----------------------------------|:--------------|:---------------------------------------------------------------|
+| `--field-input-height`             | 36px          | The height of the input field.                                 |
+| `--field-input-padding`            | 8px           | The horizontal padding of the input field.                     |
+| `--field-input-border-width`       | 1px           | The width of the input field border.                           |
+| `--field-input-border-color`       | #111111       | The color of the input field border.                           |
+| `--field-input-hover-boder-color`  | #666666       | The color of the input field border when the field is hovered. |
+| `--field-input-focus-border-color` | #3A79BB       | The color of the input field border when the field is focused. |
+
 ## Unity References
 
 - [EditorWindow](https://docs.unity3d.com/ScriptReference/EditorWindow.html)
 - [VisualElement](https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html)
+- [Unity Style Sheets (USS)](https://docs.unity3d.com/Manual/UIE-USS.html)
+- [The UXML Format](https://docs.unity3d.com/Manual/UIE-WritingUXMLTemplate.html)

@@ -1,0 +1,14 @@
+﻿HelpBox {
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    padding: 6px 0 0;
+    margin: 0;
+}
+
+HelpBox > Label {
+    font-size: var(--helpbox-font-size);
+    color: var(--helpbox-label-color);
+    -unity-font-style: italic;
+    white-space: normal;
+    max-width: 100%;
+}

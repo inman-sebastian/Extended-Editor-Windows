@@ -1,7 +1,7 @@
 {
   "name": "com.sebastian-inman.extended-editor-windows",
   "displayName": "Extended Editor Windows",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A collection of helper classes that extend the default Unity Editor Windows.",
   "unity": "2020.3",
   "unityRelease": "28f1",
@@ -22,8 +22,5 @@
       "description": "A simple Editor Window created using the Extended Editor Window package.",
       "path": "Samples~/ExampleWindow"
     }
-  ],
-  "dependencies": {
-    "com.unity.editorcoroutines": "1.0.0"
-  }
+  ]
 }

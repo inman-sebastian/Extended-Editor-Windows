@@ -1,0 +1,6 @@
+﻿TemplateContainer {
+    padding: var(--window-padding);
+    flex-direction: column;
+    display: flex;
+    height: 100%;
+}

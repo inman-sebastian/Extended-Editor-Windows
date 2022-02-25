@@ -1,0 +1,8 @@
+﻿ColorField {
+    flex-direction: column;
+    display: flex;
+}
+
+ColorField IMGUIContainer {
+    height: var(--field-height);
+}

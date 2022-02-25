@@ -1,0 +1,31 @@
+﻿.unity-base-field {
+    flex-direction: column;
+    display: flex;
+    margin: 0;
+}
+
+.unity-base-field > .unity-label {
+    font-size: var(--field-label-font-size);
+    color: var(--field-label-color);
+    padding: 0 0 6px;
+    margin: 0;
+}
+
+.unity-base-field > .unity-base-field__input {
+    border-width: var(--field-input-border-width);
+    border-color: var(--field-input-border-color);
+    padding: 0 var(--field-input-padding);
+    height: var(--field-input-height);
+}
+
+.unity-base-field:hover > .unity-base-field__input {
+    border-color: var(--field-input-hover-boder-color);
+}
+
+.unity-base-field:focus > .unity-base-field__input:focus {
+    border-color: var(--field-input-focus-border-color);
+}
+
+.unity-base-field:focus > .unity-label {
+    color: var(--field-label-focus-color);
+}

@@ -1,0 +1,10 @@
+﻿Button {
+    height: var(--button-default-height);
+    padding: 0 var(--button-default-padding);
+    margin: 0;
+}
+
+Button.btn-large {
+    height: var(--button-large-height);
+    padding: 0 var(--button-large-padding);
+}
