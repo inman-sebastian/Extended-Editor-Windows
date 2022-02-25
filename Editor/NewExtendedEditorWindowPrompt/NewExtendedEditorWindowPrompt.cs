@@ -82,6 +82,8 @@ public class NewExtendedEditorWindowPrompt : ExtendedEditorWindow<NewExtendedEdi
         await GenerateScriptFile();
         await GenerateStyleFile();
         await GenerateTemplateFile();
+        
+        CloseWindow();
 
         _busy = false;
 
