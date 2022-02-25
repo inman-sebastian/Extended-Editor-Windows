@@ -1,0 +1,345 @@
+.root,
+TemplateContainer {
+    padding: 16px;
+    height: 100%;
+}
+
+.root > ScrollView,
+TemplateContainer ScrollView {
+    margin: -16px -16px 0;
+    height: auto;
+    padding: 16px;
+}
+
+.w-full {
+    width: 100%;
+}
+
+.h-full {
+    height: 100%;
+}
+
+.w-1-2 {
+    width: 50%;
+}
+
+.w-1-3 {
+    width: 33.333%;
+}
+
+.hidden {
+    position: absolute !important;
+    visibility: hidden !important;
+    overflow: hidden !important;
+    display: none !important;
+    max-height: 0 !important;
+    max-width: 0 !important;
+    padding: 0 !important;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-no-wrap {
+    flex-wrap: nowrap;
+}
+
+.flex-1 {
+    flex: 1 1 0;
+}
+
+.flex-auto {
+    flex: 1 1 auto;
+}
+
+.flex-initial {
+    flex: 0 1 auto;
+}
+
+.flex-none {
+    flex: none;
+}
+
+.flex-row {
+    flex-direction: row;
+    margin-right: -8px;
+    margin-left: -8px;
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+    display: flex;
+}
+
+.flex-row > .flex-col.pl-4 {
+    padding-left: 4px !important;
+}
+
+.flex-row > .flex-col.pr-4 {
+    padding-right: 4px !important;
+}
+
+.flex-row > .flex-col.px-4 {
+    padding-right: 4px !important;
+    padding-left: 4px !important;
+}
+
+.flex-row > .flex-col {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+.justify-start {
+    justify-content: flex-start;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-end {
+    justify-content: flex-end;
+}
+
+.items-start {
+    align-items: flex-start;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.items-end {
+    align-items: flex-end;
+}
+
+.title Label {
+    margin-bottom: 16px;
+    font-size: 14px;
+    -unity-font-style: bold;
+}
+
+.mb-8 {
+    margin-bottom: 8px;
+}
+
+.mb-16 {
+    margin-bottom: 16px;
+}
+
+Box {
+    border-width: 1px;
+    border-color: rgba(255,255,255,0.125);
+    padding: 16px 16px 8px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+}
+
+Button {
+    height: 34px;
+    padding: 0 12px;
+    margin: 0;
+}
+
+Toggle {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    margin: 0 0 8px;
+}
+
+Toggle Label {
+    flex: 1 1 0;
+}
+
+Toggle .unity-toggle__input {
+    margin-right: 4px;
+    width: 16px;
+    flex: none;
+}
+
+/**
+ * Unity Foldout Styles
+ */
+
+Foldout > Toggle {
+    margin: -16px -16px 0;
+    padding: 16px 16px 8px;
+}
+
+Foldout > Toggle .unity-toggle__input {
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex: 1 1 0;
+    margin: 0;
+}
+
+Foldout > Toggle .unity-toggle__input > Label {
+    font-size: 13px;
+    -unity-font-style: bold;
+    padding: 0 0 0 2px;
+}
+
+Foldout > Toggle .unity-toggle__input .unity-toggle__checkmark {
+    margin: 0;
+}
+
+Foldout > .unity-foldout__content {
+    margin: 8px 0;
+}
+
+.unity-base-text-field,
+.unity-composite-field {
+    display: flex;
+    flex-direction: column;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.unity-base-text-field > Label {
+    margin-bottom: 6px;
+    padding: 0;
+}
+
+.unity-base-text-field__input {
+    padding-right: 8px;
+    padding-left: 8px;
+    height: 32px;
+}
+
+.unity-composite-field__input {
+    display: flex;
+    flex-direction: row;
+}
+
+.unity-composite-field__input .unity-base-text-field {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 0;
+}
+
+.unity-composite-field__input .unity-composite-field__field-spacer {
+    display: none;
+}
+
+/**
+ * Unity Object Selection Field
+ */
+
+.unity-object-field {
+    flex-direction: column;
+    display: flex;
+    margin: 0 0 8px;
+}
+
+.unity-object-field > Label {
+    margin-bottom: 6px;
+    padding: 0;
+}
+
+.unity-object-field__input {
+    flex-direction: row;
+    display: flex;
+}
+
+.unity-object-field-display__icon {
+    max-height: 24px;
+    max-width: 24px;
+    padding: 0;
+    margin: 0 4px;
+}
+
+.unity-object-field-display__label {
+    padding: 0;
+    margin: 0;
+}
+
+.unity-object-field__object {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    height: 32px;
+}
+
+.unity-object-field__selector {
+    height: 32px;
+    width: 32px;
+}
+
+/**
+ * Unity Enum Field
+ */
+
+.unity-enum-field {
+    flex-direction: column;
+    display: flex;
+    margin: 0;
+}
+
+.unity-enum-field > Label {
+    margin-bottom: 6px;
+    padding: 0;
+}
+
+.unity-enum-field .unity-enum-field__input {
+    padding-right: 8px;
+    padding-left: 8px;
+    height: 34px;
+}
+
+/**
+ * Unity Help Box
+ */
+
+HelpBox {
+    padding: 16px;
+    margin: 0 0 16px;
+}
+
+HelpBox > Label {
+    font-size: 12px;
+}
+
+.tooltip {
+    -unity-font-style: italic;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 4px;
+    white-space: normal;
+    max-width: 100%;
+    font-size: 12px;
+}
+
+/**
+ * Unity Two Pane Split View
+ */
+
+TwoPaneSplitView .unity-two-pane-split-view__content-container {
+    margin: 0 -8px;
+}
+
+TwoPlaneSplitView .unity-two-pane-split-view__content-container > Box {
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+.footer-actions {
+    border-top-width: 1px;
+    border-top-color: rgba(255,255,255,0.125);
+    background-color: rgba(0,0,0,0.125);
+    flex-direction: column;
+    display: flex;
+    margin: 0 -16px -16px;
+    padding: 8px 16px 16px;
+}
+
+.footer-actions > Button {
+    margin-top: 8px;
+}

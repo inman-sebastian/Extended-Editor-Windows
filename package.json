@@ -1,0 +1,11 @@
+{
+  "name": "com.sebastian-inman.extended-editor-windows",
+  "displayName": "Extended Editor Windows",
+  "version": "1.0.0",
+  "description": "A collection of helper classes that extend the default Unity Editor Windows.",
+  "author": {
+    "name": "Sebastian Inman",
+    "email": "inman.sebastian@gmail.com",
+    "url": "https://sebastianinman.me"
+  }
+}
