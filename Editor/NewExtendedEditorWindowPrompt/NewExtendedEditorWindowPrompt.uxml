@@ -3,7 +3,15 @@
     
     <VisualElement class="flex-1">
 
-        <TextField name="WindowTitle" label="Window Title" class="mb-16" />
+        <VisualElement class="flex-col mb-16">
+            <TextField name="Title" label="Window Title" />
+            <Label class="tooltip" text="At zero, droplets will instantly change direction to flow downhill. At one, droplets will never change direction." />
+        </VisualElement>
+
+        <VisualElement class="flex-col mb-16">
+            <TextField name="MenuPath" label="Window Menu Path" />
+            <Label class="tooltip" text="At zero, droplets will instantly change direction to flow downhill. At one, droplets will never change direction." />
+        </VisualElement>
         
     </VisualElement>
 

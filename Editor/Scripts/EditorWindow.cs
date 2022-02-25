@@ -29,8 +29,8 @@ namespace ExtendedEditorWindows {
             
         }
         
-        protected static void OpenWindow(string title) {
-            GetWindow<T>(title).Show();
+        protected static void OpenWindow(string title, bool utility = false, bool focus = true) {
+            GetWindow<T>(utility, title, focus).Show();
         }
 
         protected static void CloseWindow() {
