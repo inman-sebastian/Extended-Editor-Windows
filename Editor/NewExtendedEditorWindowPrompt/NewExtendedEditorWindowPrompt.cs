@@ -1,26 +1,31 @@
 ﻿using System.Collections;
 using UnityEditor;
 using ExtendedEditorWindows;
+using Unity.EditorCoroutines.Editor;
 
 public class NewExtendedEditorWindowPrompt : ExtendedEditorWindow<NewExtendedEditorWindowPrompt> {
         
-    [MenuItem("File/New Extended Editor Window")]
-    public static void Open() => OpenWindow("New Extended Editor Window");
+    [MenuItem("Assets/Create/Extended Editor Window", false, 51)]
+    public static void Open() => OpenWindow("New Editor Window");
 
     private string _windowTitle;
     private string _windowFileName;
 
     protected override void Initialize() {
+        
+        var createEditorWindowButton = Button("CreateEditorWindow", button => {
+            button.enabled = false;
+            this.StartCoroutine(CreateDirectories());
+            this.StartCoroutine(CreateFiles());
+            button.enabled = true;
+        });
 
+        createEditorWindowButton.enabled = false;
+        
         Field("WindowTitle", "", field => {
             _windowTitle = field.value;
             _windowFileName = field.value.Replace(" ", "");
-        });
-
-        Button("CreateEditorWindow", button => {
-
-            
-
+            createEditorWindowButton.enabled = field.value != "";
         });
 
     }
@@ -41,27 +46,32 @@ public class NewExtendedEditorWindowPrompt : ExtendedEditorWindow<NewExtendedEdi
         if (!AssetDatabase.IsValidFolder($"Assets/Editor/Windows/{_windowFileName}")) {
             AssetDatabase.CreateFolder("Assets/Editor/Windows", _windowFileName);
         }
-        
+
         yield return null;
         
     }
 
     private IEnumerator CreateFiles() {
         
-        FileUtil.CopyFileOrDirectory(
-            "Packages/com.sebastian-inman.extended-editor-windows/Samples/ExampleWindow/ExampleWindow.cs", 
+        // Generate the C# script file.
+        ProjectWindowUtil.CreateScriptAssetFromTemplateFile(
+            "Packages/com.sebastian-inman.extended-editor-windows/Templates~/ExtendedEditorWindow.cs.txt", 
             $"Assets/Editor/Windows/{_windowFileName}/{_windowFileName}.cs"
         );
-            
-        FileUtil.CopyFileOrDirectory(
-            "Packages/com.sebastian-inman.extended-editor-windows/Samples/ExampleWindow/ExampleWindow.uss", 
+        
+        // Generate the USS stylesheet.
+        ProjectWindowUtil.CreateScriptAssetFromTemplateFile(
+            "Packages/com.sebastian-inman.extended-editor-windows/Templates~/ExtendedEditorWindow.uss.txt", 
             $"Assets/Editor/Windows/{_windowFileName}/{_windowFileName}.uss"
         );
-            
-        FileUtil.CopyFileOrDirectory(
-            "Packages/com.sebastian-inman.extended-editor-windows/Samples/ExampleWindow/ExampleWindow.uxml", 
+        
+        // Generate the UXML template.
+        ProjectWindowUtil.CreateScriptAssetFromTemplateFile(
+            "Packages/com.sebastian-inman.extended-editor-windows/Templates~/ExtendedEditorWindow.uxml.txt", 
             $"Assets/Editor/Windows/{_windowFileName}/{_windowFileName}.uxml"
         );
+
+        AssetDatabase.Refresh();
 
         yield return null;
 

@@ -1,0 +1,4 @@
+﻿#ExampleLabel {
+    color: dodgerblue;
+    font-size: 18px;
+}

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UXML xmlns="UnityEngine.UIElements" xmlns:Editor="UnityEditor.UIElements" class="h-full">
+    
+    <VisualElement class="flex-1 flex flex-col">
+        <TextField name="ExampleInput" label="Example Text Field" class="mb-16" />
+        <Label name="ExampleLabel" />
+    </VisualElement>
+
+    <VisualElement class="footer-actions">
+        <Button name="LogExampleInput" text="Log Example Input" />
+    </VisualElement>
+    
+</UXML>

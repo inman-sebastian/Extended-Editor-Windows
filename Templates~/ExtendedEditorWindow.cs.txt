@@ -1,0 +1,21 @@
+﻿using UnityEngine;
+using ExtendedEditorWindows;
+
+public class #SCRIPTNAME# : ExtendedEditorWindow<#SCRIPTNAME#> {
+    
+    [UnityEditor.MenuItem("Tools/Extended Editor Window")]
+    public static void Open() => OpenWindow("Extended Editor Window");
+
+    protected override void Initialize() {
+
+        Field("ExampleInput", "", field => {
+            Label("ExampleLabel").text = field.value;
+        });
+
+        Button("LogExampleInput", button => {
+            Debug.Log(Label("ExampleLabel").text);
+        });
+
+    }
+        
+}
