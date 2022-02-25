@@ -6,6 +6,7 @@
   "unity": "2020.3",
   "unityRelease": "28f1",
   "documentationUrl": "https://github.com/sebastian-inman-design/Extended-Editor-Windows/blob/master/README.md",
+  "changelogUrl": "https://github.com/sebastian-inman-design/Extended-Editor-Windows/blob/master/CHANGELOG.md",
   "author": {
     "name": "Sebastian Inman",
     "email": "inman.sebastian@gmail.com",
