@@ -6,7 +6,7 @@ using ExtendedEditorWindows;
 
 public class NewEditorWindow : ExtendedEditorWindow<NewEditorWindow> {
         
-    [MenuItem("Extended Editor Window/New Extended Editor Window", false, 51)]
+    [MenuItem("Assets/Create/Extended Editor Window", false, 51)]
     public static void Open() => OpenWindow("New Editor Window", true);
 
     private bool _busy = false;
