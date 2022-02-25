@@ -2,7 +2,7 @@
 
 ## Description
 
-[Extended Editor Windows](https://github.com/sebastian-inman-design/Extended-Editor-Windows) is a collection of helper classes that extend the default Unity Editor Windows.
+[Extended Editor Windows](https://github.com/sebastian-inman-design/Extended-Editor-Windows) is a Unity package containing a collection of helper classes that extend the default Editor Window, making it much easier to create and customize your own Editor Windows within Unity.
 
 ## Installation
 
