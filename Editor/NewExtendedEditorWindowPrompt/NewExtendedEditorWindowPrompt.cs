@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using UnityEditor;
 using ExtendedEditorWindows;
-using UnityEngine;
 
-public class NewExtendedEditorWindowPrompt : EditorWindow<NewExtendedEditorWindowPrompt> {
+public class NewExtendedEditorWindowPrompt : ExtendedEditorWindow<NewExtendedEditorWindowPrompt> {
         
     [MenuItem("File/New Extended Editor Window")]
     public static void Open() => OpenWindow("New Extended Editor Window");

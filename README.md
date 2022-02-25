@@ -9,6 +9,7 @@
 - Open the Package Manager within Unity by going to `Window > Package Manager`.  
 - Click the **+** icon in the upper left hand corner of the window and select `"Add package from git URL..."`.  
 - Paste in the following Git URL: [https://github.com/sebastian-inman-design/Extended-Editor-Windows.git](https://github.com/sebastian-inman-design/Extended-Editor-Windows.git)
+- Click `Add`
 
 ### Folder structure
 
@@ -29,7 +30,7 @@ MyExtendedEditorWindow/         # Root directory.
 using UnityEngine;
 using ExtendedEditorWindows;
 
-public class ExampleWindow : EditorWindow<ExampleWindow> {
+public class ExampleWindow : ExtendedEditorWindow<ExampleWindow> {
     
     public static void Open() => OpenWindow("Example Window");
 
@@ -70,4 +71,3 @@ public class ExampleWindow : EditorWindow<ExampleWindow> {
 
 - [EditorWindow](https://docs.unity3d.com/ScriptReference/EditorWindow.html)
 - [VisualElement](https://docs.unity3d.com/ScriptReference/UIElements.VisualElement.html)
-- [Wikipedia: Markdown](http://wikipedia.org/wiki/Markdown)

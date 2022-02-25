@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace ExtendedEditorWindows {
 
-    public abstract class EditorWindow<T> : EditorWindow where T : EditorWindow {
+    public abstract class ExtendedEditorWindow<T> : EditorWindow where T : EditorWindow {
 
         private const string Styles = "Packages/com.sebastian-inman.extended-editor-windows/Editor/Styles/reset.uss";
 

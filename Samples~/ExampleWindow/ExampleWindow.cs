@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using ExtendedEditorWindows;
 
-public class ExampleWindow : EditorWindow<ExampleWindow> {
+public class ExampleWindow : ExtendedEditorWindow<ExampleWindow> {
     
     public static void Open() => OpenWindow("Example Window");
 
