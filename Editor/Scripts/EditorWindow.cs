@@ -7,7 +7,7 @@ namespace ExtendedEditorWindows {
 
     public abstract class EditorWindow<T> : EditorWindow where T : EditorWindow {
 
-        private const string Styles = "../Styles/reset.uss";
+        private const string Styles = "Packages/com.sebastian-inman.extended-editor-windows/Editor/Styles/reset.uss";
 
         private void CreateGUI() {
 
@@ -37,56 +37,42 @@ namespace ExtendedEditorWindows {
             GetWindow<T>().Close();
         }
 
-        /**
-         * Creates a reference to a visual element within the editor window.
-         */
-        protected Element Element(string elementName) {
-            return new Element(elementName);
+        protected VisualElement<VisualElement> VisualElement(string elementName) {
+            return new VisualElement<VisualElement>(elementName, rootVisualElement);
         }
         
-        /**
-         * Creates a reference to an image within the editor window.
-         */
+        protected Label Label(string elementName) {
+            return new Label(elementName, rootVisualElement);
+        }
+        
         protected Image Image(string elementName) {
-            return new Image(elementName);
+            return new Image(elementName, rootVisualElement);
         }
 
-        /**
-         * Creates a reference to a field element within the editor window.
-         */
         protected Field<TFieldType> Field<TFieldType>(
             string fieldName, 
             TFieldType defaultValue, 
             EventCallback<Field<TFieldType>> changeEvent) {
-            return new Field<TFieldType>(fieldName, defaultValue, changeEvent);
+            return new Field<TFieldType>(fieldName, defaultValue, changeEvent, rootVisualElement);
         }
         
-        /**
-         * Creates a reference to a field element within the editor window.
-         */
         protected Dropdown<TEnumType> Dropdown<TEnumType>(
             string fieldName,
             TEnumType defaultValue, 
             EventCallback<Dropdown<TEnumType>> changeEvent) where TEnumType : Enum {
-            return new Dropdown<TEnumType>(fieldName, defaultValue, changeEvent);
+            return new Dropdown<TEnumType>(fieldName, defaultValue, changeEvent, rootVisualElement);
         }
         
-        /**
-         * Creates a reference to an object selector element within the editor window.
-         */
         protected Asset<TAssetType> Asset<TAssetType>(
             string selectorName, 
             EventCallback<Asset<TAssetType>> changeEvent) where TAssetType : class {
-            return new Asset<TAssetType>(selectorName, changeEvent);
+            return new Asset<TAssetType>(selectorName, changeEvent, rootVisualElement);
         }
 
-        /**
-         * Creates a reference to a button element within the editor window.
-         */
         protected Button Button(
             string buttonName, 
             Action<Button> clickEvent) {
-            return new Button(buttonName, clickEvent);
+            return new Button(buttonName, clickEvent, rootVisualElement);
         }
 
         protected void SendEvent<TWindow>(string eventName) where TWindow : EditorWindow {

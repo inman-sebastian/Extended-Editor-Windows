@@ -125,6 +125,14 @@ TemplateContainer ScrollView {
     -unity-font-style: bold;
 }
 
+.mb-4 {
+    margin-bottom: 4px;
+}
+
+.mb-6 {
+    margin-bottom: 6px;
+}
+
 .mb-8 {
     margin-bottom: 8px;
 }
@@ -136,9 +144,10 @@ TemplateContainer ScrollView {
 Box {
     border-width: 1px;
     border-color: rgba(255,255,255,0.125);
-    padding: 16px 16px 8px;
+    padding: 16px;
     margin-bottom: 16px;
     border-radius: 4px;
+    overflow: hidden;
 }
 
 Button {

@@ -2,17 +2,16 @@
 
 namespace ExtendedEditorWindows {
     
-    public class Field<T> {
+    public class Field<T> : VisualElement<BaseField<T>> {
 
-        public readonly BaseField<T> field;
         public T value;
 
-        public Field(string name, T defaultValue, EventCallback<Field<T>> changeEvent) {
+        public Field(string name, T defaultValue, EventCallback<Field<T>> changeEvent, VisualElement template) : base(name, template) {
             
-            field = UnityEditor.EditorWindow.focusedWindow.rootVisualElement.Q<BaseField<T>>(name);
-            field.value = defaultValue;
+            element = template.Q<BaseField<T>>(name);
+            element.value = defaultValue;
             
-            field.RegisterCallback<ChangeEvent<T>>(@event => {
+            element.RegisterCallback<ChangeEvent<T>>(@event => {
                 value = @event.newValue;
                 changeEvent(this);
             });
@@ -21,12 +20,12 @@ namespace ExtendedEditorWindows {
 
         public void ClampValue(T minValue, T maxValue) {
 
-            if (float.Parse(field.value.ToString()) < float.Parse(minValue.ToString())) {
-                field.value = minValue;
+            if (float.Parse(element.value.ToString()) < float.Parse(minValue.ToString())) {
+                element.value = minValue;
             }
 
-            if (float.Parse(field.value.ToString()) > float.Parse(maxValue.ToString())) {
-                field.value = maxValue;
+            if (float.Parse(element.value.ToString()) > float.Parse(maxValue.ToString())) {
+                element.value = maxValue;
             }
 
         }

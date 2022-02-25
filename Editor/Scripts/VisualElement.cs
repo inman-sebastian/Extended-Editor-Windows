@@ -2,11 +2,12 @@
 
 namespace ExtendedEditorWindows {
     
-    public class Element {
-
-        private readonly VisualElement _element;
+    public class VisualElement<T> : VisualElement where T : VisualElement {
         
-        public bool visible {
+        public T element;
+        
+        public new bool visible {
+            get => element.visible;
             set {
                 if (value) {
                     RemoveClass("hidden");
@@ -15,42 +16,35 @@ namespace ExtendedEditorWindows {
                     RemoveClass("flex");
                     AddClass("hidden");
                 }
-                _element.visible = value;
+                element.visible = value;
             }
         }
         
-        public bool focusable {
-            set => _element.focusable = value;
+        public new bool focusable {
+            get => element.focusable;
+            set => element.focusable = value;
         }
-
-        public Element(string name) {
-            
-            _element = UnityEditor.EditorWindow.focusedWindow.rootVisualElement.Q<VisualElement>(name);
-            
+        
+        public VisualElement(string name, VisualElement template) {
+            element = template.Q<T>(name);
         }
         
         public void AddClass(string className) {
-            
-            _element.AddToClassList(className);
-            
+            element.AddToClassList(className);
         }
         
         public void RemoveClass(string className) {
-            
-            _element.RemoveFromClassList(className);
-            
+            element.RemoveFromClassList(className);
         }
 
         public void ToggleClass(string className) {
-            
-            if (_element.ClassListContains(className)) {
+            if (element.ClassListContains(className)) {
                 RemoveClass(className);
             } else {
                 AddClass(className);
             }
-            
         }
-
+        
     }
     
 }

@@ -8,9 +8,9 @@ namespace ExtendedEditorWindows {
 
         public T selected;
 
-        public Asset(string name, EventCallback<Asset<T>> changeEvent) {
+        public Asset(string name, EventCallback<Asset<T>> changeEvent, VisualElement template) {
             
-            var element = UnityEditor.EditorWindow.focusedWindow.rootVisualElement.Q<ObjectField>(name);
+            var element = template.Q<ObjectField>(name);
             
             element.RegisterCallback<ChangeEvent<Object>>(e => {
                 selected = e.newValue as T;

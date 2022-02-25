@@ -1,11 +1,28 @@
 {
   "name": "com.sebastian-inman.extended-editor-windows",
   "displayName": "Extended Editor Windows",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "A collection of helper classes that extend the default Unity Editor Windows.",
+  "unity": "2020.3",
+  "unityRelease": "28f1",
+  "documentationUrl": "https://github.com/sebastian-inman-design/Extended-Editor-Windows/blob/master/README.md",
   "author": {
     "name": "Sebastian Inman",
     "email": "inman.sebastian@gmail.com",
     "url": "https://sebastianinman.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sebastian-inman-design/Extended-Editor-Windows.git"
+  },
+  "samples": [
+    {
+      "displayName": "Example Window",
+      "description": "A simple Editor Window created using the Extended Editor Window package.",
+      "path": "Samples~/ExampleWindow"
+    }
+  ],
+  "dependencies": {
+    "com.unity.editorcoroutines": "1.0.0"
   }
 }

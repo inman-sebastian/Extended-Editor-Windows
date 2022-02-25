@@ -3,19 +3,16 @@ using UnityEngine.UIElements;
 
 namespace ExtendedEditorWindows {
     
-    public class Button {
+    public class Button : VisualElement<UnityEngine.UIElements.Button> {
 
-        private readonly UnityEngine.UIElements.Button _element;
-        
         public bool enabled {
-            set => _element.SetEnabled(value);
+            get => element.enabledSelf;
+            set => element.SetEnabled(value);
         }
 
-        public Button(string name, Action<Button> clickEvent) {
-            
-            _element = UnityEditor.EditorWindow.focusedWindow.rootVisualElement.Q<UnityEngine.UIElements.Button>(name);
-            _element.RegisterCallback<ClickEvent>(e => clickEvent(this));
-            
+        public Button(string name, Action<Button> clickEvent, VisualElement template) : base(name, template) {
+            element = template.Q<UnityEngine.UIElements.Button>(name);
+            element.RegisterCallback<ClickEvent>(e => clickEvent(this));
         }
 
     }

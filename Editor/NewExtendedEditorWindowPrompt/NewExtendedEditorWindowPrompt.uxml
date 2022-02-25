@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UXML xmlns="UnityEngine.UIElements" xmlns:Editor="UnityEditor.UIElements" class="h-full">
+    
+    <VisualElement class="flex-1">
+
+        <TextField name="WindowTitle" label="Window Title" class="mb-16" />
+        
+    </VisualElement>
+
+    <VisualElement class="footer-actions">
+        <Button name="CreateEditorWindow" text="Create Editor Window" />
+    </VisualElement>
+    
+</UXML>

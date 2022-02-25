@@ -3,18 +3,15 @@ using UnityEngine.UIElements;
 
 namespace ExtendedEditorWindows {
     
-    public class Image {
+    public class Image : VisualElement<UnityEngine.UIElements.Image> {
 
-        private readonly UnityEngine.UIElements.Image _element;
-        
         public Texture2D texture {
-            set => _element.image = value;
+            get => element.image as Texture2D;
+            set => element.image = value;
         }
 
-        public Image(string name) {
-            
-            _element = UnityEditor.EditorWindow.focusedWindow.rootVisualElement.Q<UnityEngine.UIElements.Image>(name);
-            
+        public Image(string name, VisualElement template) : base(name, template) {
+            element = template.Q<UnityEngine.UIElements.Image>(name);
         }
 
     }
