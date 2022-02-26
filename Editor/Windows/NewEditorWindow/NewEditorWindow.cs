@@ -16,9 +16,10 @@ public class NewEditorWindow : ExtendedEditorWindow<NewEditorWindow> {
     private Button _createButton;
 
     private string _filePath;
-    protected override List<Panel> panels => new List<Panel>();
 
     protected override string title => "New Editor Window";
+    protected override bool includeTemplateFiles => true;
+    protected override List<Panel> panels => new List<Panel>();
     
     [MenuItem("Assets/Create/Editor Window")]
     public static void OnOpen() => OpenWindow();

@@ -30,6 +30,8 @@ namespace ExtendedEditorWindows {
         protected abstract List<Panel> panels { get; }
 
         protected new abstract string title { get; }
+        
+        protected abstract bool includeTemplateFiles { get; }
 
         protected static void OpenWindow(bool utility = false, bool focus = true) {
             Window = GetWindow<T>(utility, "", focus) as ExtendedEditorWindow<T>;
@@ -60,25 +62,29 @@ namespace ExtendedEditorWindows {
 
         private void CreateGUI() {
 
-            // Programatically get the path of the editor window.
-            var editorScript = MonoScript.FromScriptableObject(this);
-            var editorPath = AssetDatabase.GetAssetPath(editorScript).Replace(".cs", "");
+            if (includeTemplateFiles) {
+             
+                // Programatically get the path of the editor window.
+                var editorScript = MonoScript.FromScriptableObject(this);
+                var editorPath = AssetDatabase.GetAssetPath(editorScript).Replace(".cs", "");
             
-            // Define the paths for all UXML and USS assets associated with the editor window.
-            var editorTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>($"{editorPath}.uxml");
-            var editorStyleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>($"{editorPath}.uss");
+                // Define the paths for all UXML and USS assets associated with the editor window.
+                var editorTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>($"{editorPath}.uxml");
+                var editorStyleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>($"{editorPath}.uss");
 
-            // Add the template for this editor window.
-            rootVisualElement.Add(editorTemplate.Instantiate());
+                // Add the template for this editor window.
+                rootVisualElement.Add(editorTemplate.Instantiate());
 
-            // Add global stylesheets to this editor window.
-            foreach(var stylesheet in Stylesheets) {
-                var asset = AssetDatabase.LoadAssetAtPath<StyleSheet>(stylesheet);
-                rootVisualElement.styleSheets.Add(asset);
+                // Add global stylesheets to this editor window.
+                foreach(var stylesheet in Stylesheets) {
+                    var asset = AssetDatabase.LoadAssetAtPath<StyleSheet>(stylesheet);
+                    rootVisualElement.styleSheets.Add(asset);
+                }
+            
+                // Add the stylesheet for this editor window.
+                rootVisualElement.styleSheets.Add(editorStyleSheet);
+                
             }
-            
-            // Add the stylesheet for this editor window.
-            rootVisualElement.styleSheets.Add(editorStyleSheet);
 
             OnCreate();
             
