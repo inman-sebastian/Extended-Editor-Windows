@@ -3,7 +3,7 @@
   "displayName": "Extended Editor Windows",
   "type": "tool",
   "category": "Editor",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Extended Editor Windows is a Unity package containing a collection of helper classes that extend the default Editor Window, making it much easier to create and customize your own Editor Windows within Unity.",
   "unity": "2020.3",
   "unityRelease": "28f1",

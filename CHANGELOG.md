@@ -1,6 +1,12 @@
 ﻿# Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.0.3] - 2022-02-25
+
+### Added
+
+- Added the ability to dock windows to one another.
+
 ## [1.0.2] - 2022-02-25
 
 ### Changed

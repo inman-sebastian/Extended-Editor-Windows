@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using UnityEditor;
+﻿using UnityEditor;
 using System.Threading.Tasks;
 using ExtendedEditorWindows;
 
