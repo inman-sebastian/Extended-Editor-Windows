@@ -41,51 +41,55 @@ namespace ExtendedEditorWindows {
         private void OnGUI() {
             
             if (!_isReady) {
+                
                 titleContent = new GUIContent { text = title };
-                _isReady = true;
-                OnReady();
-            }
 
-            if (panels.Count > 0 && !_loadedPanels) {
+                if (panels.Count > 0 && !_loadedPanels) {
                 
-                foreach (var panel in panels) {
-                    var window = GetWindow(panel.type);
-                    this.Dock(window, panel.position);
+                    foreach (var panel in panels) {
+                        var window = GetWindow(panel.type);
+                        this.Dock(window, panel.position);
+                    }
+
+                    _loadedPanels = true;
+                
                 }
-
-                _loadedPanels = true;
+                
+                _isReady = true;
+                
+                OnReady();
+                
+            } else {
+                
+                OnUpdate();
                 
             }
-
-            OnUpdate();
 
         }
 
         private void CreateGUI() {
-
-            if (includeTemplateFiles) {
-             
-                // Programatically get the path of the editor window.
-                var editorScript = MonoScript.FromScriptableObject(this);
-                var editorPath = AssetDatabase.GetAssetPath(editorScript).Replace(".cs", "");
             
-                // Define the paths for all UXML and USS assets associated with the editor window.
-                var editorTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>($"{editorPath}.uxml");
-                var editorStyleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>($"{editorPath}.uss");
-
-                // Add the template for this editor window.
-                rootVisualElement.Add(editorTemplate.Instantiate());
-
-                // Add global stylesheets to this editor window.
-                foreach(var stylesheet in Stylesheets) {
-                    var asset = AssetDatabase.LoadAssetAtPath<StyleSheet>(stylesheet);
-                    rootVisualElement.styleSheets.Add(asset);
-                }
+            if (!includeTemplateFiles) return;
             
-                // Add the stylesheet for this editor window.
-                rootVisualElement.styleSheets.Add(editorStyleSheet);
-                
+            // Programatically get the path of the editor window.
+            var editorScript = MonoScript.FromScriptableObject(this);
+            var editorPath = AssetDatabase.GetAssetPath(editorScript).Replace(".cs", "");
+            
+            // Define the paths for all UXML and USS assets associated with the editor window.
+            var editorTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>($"{editorPath}.uxml");
+            var editorStyleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>($"{editorPath}.uss");
+
+            // Add the template for this editor window.
+            rootVisualElement.Add(editorTemplate.Instantiate());
+
+            // Add global stylesheets to this editor window.
+            foreach(var stylesheet in Stylesheets) {
+                var asset = AssetDatabase.LoadAssetAtPath<StyleSheet>(stylesheet);
+                rootVisualElement.styleSheets.Add(asset);
             }
+            
+            // Add the stylesheet for this editor window.
+            rootVisualElement.styleSheets.Add(editorStyleSheet);
 
         }
 
