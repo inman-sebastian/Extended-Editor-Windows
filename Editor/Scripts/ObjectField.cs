@@ -10,7 +10,7 @@ namespace ExtendedEditorWindows {
         
         public ObjectField(string name, VisualElement template) : base(name, template) {
             element = template.Q<ObjectField>(name);
-            selected = element.value as T;
+            selected = element?.value as T;
         }
 
         public ObjectField(string name, EventCallback<ObjectField<T>> changeEvent, VisualElement template) : base(name, template) {
@@ -19,7 +19,7 @@ namespace ExtendedEditorWindows {
         }
 
         public void OnChange(EventCallback<ObjectField<T>> changeEvent) {
-            element.RegisterCallback<ChangeEvent<Object>>(e => {
+            element?.RegisterCallback<ChangeEvent<Object>>(e => {
                 selected = e.newValue as T;
                 changeEvent(this);
             });

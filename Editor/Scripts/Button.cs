@@ -20,7 +20,7 @@ namespace ExtendedEditorWindows {
         }
 
         public void OnClick(Action<Button> clickEvent) {
-            element.RegisterCallback<ClickEvent>(e => clickEvent(this));
+            element?.RegisterCallback<ClickEvent>(e => clickEvent(this));
         }
 
     }

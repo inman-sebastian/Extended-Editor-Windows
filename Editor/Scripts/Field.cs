@@ -22,7 +22,7 @@ namespace ExtendedEditorWindows {
         }
 
         public void OnChange(EventCallback<Field<T>> changeEvent) {
-            element.RegisterCallback<ChangeEvent<T>>(@event => {
+            element?.RegisterCallback<ChangeEvent<T>>(@event => {
                 value = @event.newValue;
                 changeEvent(this);
             });

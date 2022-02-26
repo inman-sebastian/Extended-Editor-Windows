@@ -32,13 +32,12 @@ namespace ExtendedEditorWindows {
         protected new abstract string title { get; }
 
         protected static void OpenWindow(bool utility = false, bool focus = true) {
-            var window = GetWindow<T>(utility, "", focus) as ExtendedEditorWindow<T>;
+            Window = GetWindow<T>(utility, "", focus) as ExtendedEditorWindow<T>;
         }
 
         private void OnGUI() {
 
-            if (Window == null) {
-                Window = this;
+            if (Window != null) {
                 Window.titleContent = new GUIContent {
                     text = title
                 };
@@ -119,12 +118,12 @@ namespace ExtendedEditorWindows {
             return new EnumField<TEnumType>(fieldName, defaultValue, changeEvent, rootVisualElement);
         }
         
-        public ObjectField<TAssetType> ObjectField<TAssetType>(string selectorName) where TAssetType : class {
-            return new ObjectField<TAssetType>(selectorName, rootVisualElement);
+        public ObjectField<TAssetType> ObjectField<TAssetType>(string fieldName) where TAssetType : class {
+            return new ObjectField<TAssetType>(fieldName, rootVisualElement);
         }
         
-        public ObjectField<TAssetType> ObjectField<TAssetType>(string selectorName, EventCallback<ObjectField<TAssetType>> changeEvent) where TAssetType : class {
-            return new ObjectField<TAssetType>(selectorName, changeEvent, rootVisualElement);
+        public ObjectField<TAssetType> ObjectField<TAssetType>(string fieldName, EventCallback<ObjectField<TAssetType>> changeEvent) where TAssetType : class {
+            return new ObjectField<TAssetType>(fieldName, changeEvent, rootVisualElement);
         }
 
         public Button Button(

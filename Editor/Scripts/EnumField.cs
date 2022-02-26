@@ -24,7 +24,7 @@ namespace ExtendedEditorWindows {
         }
 
         public void OnChange(EventCallback<EnumField<TEnum>> changeEvent) {
-            element.RegisterCallback<ChangeEvent<Enum>>(@event => {
+            element?.RegisterCallback<ChangeEvent<Enum>>(@event => {
                 selected = (TEnum) @event.newValue;
                 changeEvent(this);
             });
