@@ -43,14 +43,16 @@ namespace ExtendedEditorWindows {
                 };
             }
 
-            if (panels.Count <= 0 || _loadedPanels) return;
-            
-            foreach (var panel in panels) {
-                var window = GetWindow(panel.type);
-                this.Dock(window, panel.position);
-            }
+            if (panels.Count > 0 && !_loadedPanels) {
+                
+                foreach (var panel in panels) {
+                    var window = GetWindow(panel.type);
+                    this.Dock(window, panel.position);
+                }
 
-            _loadedPanels = true;
+                _loadedPanels = true;
+                
+            }
 
             OnUpdate();
 
