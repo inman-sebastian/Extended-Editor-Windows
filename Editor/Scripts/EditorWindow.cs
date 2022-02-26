@@ -13,8 +13,8 @@ namespace ExtendedEditorWindows {
 
     public abstract class ExtendedEditorWindow<T> : EditorWindow where T : EditorWindow {
         
-        private static ExtendedEditorWindow<T> Window;
-        
+        public static ExtendedEditorWindow<T> Window;
+
         private bool _loadedPanels = false;
 
         private readonly string[] Stylesheets = {
@@ -83,53 +83,61 @@ namespace ExtendedEditorWindows {
             
         }
 
-        protected static void CloseWindow() {
-            Window.Close();
-        }
-
-        protected VisualElement<VisualElement> VisualElement(string elementName) {
+        public VisualElement<VisualElement> VisualElement(string elementName) {
             return new VisualElement<VisualElement>(elementName, rootVisualElement);
         }
         
-        protected Label Label(string elementName) {
+        public Label Label(string elementName) {
             return new Label(elementName, rootVisualElement);
         }
         
-        protected Image Image(string elementName) {
+        public Image Image(string elementName) {
             return new Image(elementName, rootVisualElement);
         }
+        
+        public Field<TFieldType> Field<TFieldType>(string fieldName) {
+            return new Field<TFieldType>(fieldName, rootVisualElement);
+        }
+        
+        public Field<TFieldType> Field<TFieldType>(string fieldName, TFieldType defaultValue) {
+            return new Field<TFieldType>(fieldName, defaultValue, rootVisualElement);
+        }
 
-        protected Field<TFieldType> Field<TFieldType>(
-            string fieldName, 
-            TFieldType defaultValue, 
-            EventCallback<Field<TFieldType>> changeEvent) {
+        public Field<TFieldType> Field<TFieldType>(string fieldName, TFieldType defaultValue, EventCallback<Field<TFieldType>> changeEvent) {
             return new Field<TFieldType>(fieldName, defaultValue, changeEvent, rootVisualElement);
         }
         
-        protected Dropdown<TEnumType> Dropdown<TEnumType>(
-            string fieldName,
-            TEnumType defaultValue, 
-            EventCallback<Dropdown<TEnumType>> changeEvent) where TEnumType : Enum {
-            return new Dropdown<TEnumType>(fieldName, defaultValue, changeEvent, rootVisualElement);
+        public EnumField<TEnumType> EnumField<TEnumType>(string fieldName) where TEnumType : Enum {
+            return new EnumField<TEnumType>(fieldName, rootVisualElement);
         }
         
-        protected Asset<TAssetType> Asset<TAssetType>(
-            string selectorName, 
-            EventCallback<Asset<TAssetType>> changeEvent) where TAssetType : class {
-            return new Asset<TAssetType>(selectorName, changeEvent, rootVisualElement);
+        public EnumField<TEnumType> EnumField<TEnumType>(string fieldName, TEnumType defaultValue) where TEnumType : Enum {
+            return new EnumField<TEnumType>(fieldName, defaultValue, rootVisualElement);
         }
 
-        protected Button Button(
+        public EnumField<TEnumType> EnumField<TEnumType>(string fieldName, TEnumType defaultValue, EventCallback<EnumField<TEnumType>> changeEvent) where TEnumType : Enum {
+            return new EnumField<TEnumType>(fieldName, defaultValue, changeEvent, rootVisualElement);
+        }
+        
+        public ObjectField<TAssetType> ObjectField<TAssetType>(string selectorName) where TAssetType : class {
+            return new ObjectField<TAssetType>(selectorName, rootVisualElement);
+        }
+        
+        public ObjectField<TAssetType> ObjectField<TAssetType>(string selectorName, EventCallback<ObjectField<TAssetType>> changeEvent) where TAssetType : class {
+            return new ObjectField<TAssetType>(selectorName, changeEvent, rootVisualElement);
+        }
+
+        public Button Button(
             string buttonName, 
             Action<Button> clickEvent) {
             return new Button(buttonName, clickEvent, rootVisualElement);
         }
 
-        protected void SendEvent<TWindow>(string eventName) where TWindow : EditorWindow {
+        public void SendEvent<TWindow>(string eventName) where TWindow : EditorWindow {
             GetWindow<TWindow>().SendEvent(EditorGUIUtility.CommandEvent(eventName));
         }
 
-        protected void EventCallback(string eventName, Action callback) {
+        public void EventCallback(string eventName, Action callback) {
             if (Event.current.commandName == eventName) {
                 callback();
             }

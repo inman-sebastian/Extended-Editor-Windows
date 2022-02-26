@@ -82,7 +82,7 @@ public class NewEditorWindow : ExtendedEditorWindow<NewEditorWindow> {
         await GenerateStyleFile();
         await GenerateTemplateFile();
         
-        CloseWindow();
+        Close();
 
         _busy = false;
 

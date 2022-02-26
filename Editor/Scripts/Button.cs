@@ -9,9 +9,17 @@ namespace ExtendedEditorWindows {
             get => element.enabledSelf;
             set => element.SetEnabled(value);
         }
+        
+        public Button(string name, VisualElement template) : base(name, template) {
+            element = template.Q<UnityEngine.UIElements.Button>(name);
+        }
 
         public Button(string name, Action<Button> clickEvent, VisualElement template) : base(name, template) {
             element = template.Q<UnityEngine.UIElements.Button>(name);
+            OnClick(clickEvent);
+        }
+
+        public void OnClick(Action<Button> clickEvent) {
             element.RegisterCallback<ClickEvent>(e => clickEvent(this));
         }
 

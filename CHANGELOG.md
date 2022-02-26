@@ -2,6 +2,13 @@
 All notable changes to the [Extended Editor Windows](https://github.com/sebastian-inman-design/Extended-Editor-Windows) Unity package will be documented here.
 
 
+### v1.0.6 - 2022-02-26
+
+- Made all template helper methods public.
+- Exposed a public static `Window` variable for Editor Windows to allow communication between windows and other Editor scripts.
+- Created variations of template helper methods.
+
+
 ### v1.0.4 - 2022-02-26
 
 - Replaced the `Initialize` method with `OnCreate`, which is no longer a required abstract method, but instead an optional virtual method.
