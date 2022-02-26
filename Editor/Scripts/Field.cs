@@ -11,17 +11,15 @@ namespace ExtendedEditorWindows {
         }
         
         public Field(string name, T defaultValue, VisualElement template) : base(name, template) {
+            value = defaultValue;
             element = template.Q<BaseField<T>>(name);
             element.value = defaultValue;
         }
 
         public Field(string name, T defaultValue, EventCallback<Field<T>> changeEvent, VisualElement template) : base(name, template) {
+            value = defaultValue;
             element = template.Q<BaseField<T>>(name);
             element.value = defaultValue;
-            OnChange(changeEvent);
-        }
-
-        public void OnChange(EventCallback<Field<T>> changeEvent) {
             element?.RegisterCallback<ChangeEvent<T>>(@event => {
                 value = @event.newValue;
                 changeEvent(this);

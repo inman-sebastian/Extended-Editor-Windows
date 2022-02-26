@@ -13,17 +13,15 @@ namespace ExtendedEditorWindows {
         }
         
         public EnumField(string name, TEnum defaultValue, VisualElement template) : base(name, template) {
+            selected = defaultValue;
             element = template.Q<EnumField>(name);
             element.value = defaultValue;
         }
 
         public EnumField(string name, TEnum defaultValue, EventCallback<EnumField<TEnum>> changeEvent, VisualElement template) : base(name, template) {
+            selected = defaultValue;
             element = template.Q<EnumField>(name);
             element.value = defaultValue;
-            OnChange(changeEvent);
-        }
-
-        public void OnChange(EventCallback<EnumField<TEnum>> changeEvent) {
             element?.RegisterCallback<ChangeEvent<Enum>>(@event => {
                 selected = (TEnum) @event.newValue;
                 changeEvent(this);
