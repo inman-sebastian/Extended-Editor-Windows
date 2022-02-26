@@ -1,7 +1,6 @@
 ﻿using UnityEditor;
 using ExtendedEditorWindows;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 
 public class NewEditorWindow : ExtendedEditorWindow<NewEditorWindow> {
 
@@ -18,13 +17,11 @@ public class NewEditorWindow : ExtendedEditorWindow<NewEditorWindow> {
     private string _filePath;
 
     protected override string title => "New Editor Window";
-    protected override bool includeTemplateFiles => true;
-    protected override List<Panel> panels => new List<Panel>();
     
     [MenuItem("Assets/Create/Editor Window")]
     public static void OnOpen() => OpenWindow();
 
-    protected override void OnCreate() {
+    protected override void OnReady() {
 
         _createButton = Button("CreateEditorWindow", button => Generate());
         _createButton.enabled = false;
@@ -104,7 +101,7 @@ public class NewEditorWindow : ExtendedEditorWindow<NewEditorWindow> {
             "    [MenuItem(\"" + _windowMenuPath + "\")]",
             "    public static void OnOpen() => OpenWindow();",
             "",
-            "    protected override void OnCreate() {",
+            "    protected override void OnReady() {",
             "",
             "        Field(\"ExampleInput\", \"\", field => {",
             "            Label(\"ExampleLabel\").text = field.value;",

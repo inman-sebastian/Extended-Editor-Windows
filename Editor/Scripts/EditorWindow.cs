@@ -15,6 +15,7 @@ namespace ExtendedEditorWindows {
         
         public static ExtendedEditorWindow<T> Window;
 
+        private bool _isReady = false;
         private bool _loadedPanels = false;
 
         private readonly string[] Stylesheets = {
@@ -27,23 +28,17 @@ namespace ExtendedEditorWindows {
             "Packages/com.sebastian-inman.extended-editor-windows/Editor/Styles/helpbox.uss"
         };
 
-        protected abstract List<Panel> panels { get; }
-
         protected new abstract string title { get; }
         
-        protected abstract bool includeTemplateFiles { get; }
+        protected virtual List<Panel> panels => new List<Panel>();
+
+        protected virtual bool includeTemplateFiles => true;
 
         protected static void OpenWindow(bool utility = false, bool focus = true) {
             Window = GetWindow<T>(utility, "", focus) as ExtendedEditorWindow<T>;
         }
 
         private void OnGUI() {
-
-            if (Window != null) {
-                Window.titleContent = new GUIContent {
-                    text = title
-                };
-            }
 
             if (panels.Count > 0 && !_loadedPanels) {
                 
@@ -54,6 +49,14 @@ namespace ExtendedEditorWindows {
 
                 _loadedPanels = true;
                 
+            }
+
+            if (!_isReady) {
+                titleContent = new GUIContent {
+                    text = title
+                };
+                OnReady();
+                _isReady = true;
             }
 
             OnUpdate();
@@ -86,8 +89,6 @@ namespace ExtendedEditorWindows {
                 
             }
 
-            OnCreate();
-            
         }
 
         public VisualElement<VisualElement> VisualElement(string elementName) {
@@ -150,7 +151,7 @@ namespace ExtendedEditorWindows {
             }
         }
 
-        protected virtual void OnCreate() { }
+        protected virtual void OnReady() { }
         
         protected virtual void OnUpdate() { }
 
