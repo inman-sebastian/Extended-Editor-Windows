@@ -13,6 +13,8 @@ namespace ExtendedEditorWindows {
 
     public abstract class ExtendedEditorWindow<T> : EditorWindow where T : EditorWindow {
         
+        private static ExtendedEditorWindow<T> Window;
+        
         private bool _loadedPanels = false;
 
         private readonly string[] Stylesheets = {
@@ -26,9 +28,22 @@ namespace ExtendedEditorWindows {
         };
 
         protected abstract List<Panel> panels { get; }
-        
+
+        protected new abstract string title { get; }
+
+        protected static void OpenWindow(bool utility = false, bool focus = true) {
+            var window = GetWindow<T>(utility, "", focus) as ExtendedEditorWindow<T>;
+        }
+
         private void OnGUI() {
-            
+
+            if (Window == null) {
+                Window = this;
+                Window.titleContent = new GUIContent {
+                    text = title
+                };
+            }
+
             if (panels.Count <= 0 || _loadedPanels) return;
             
             foreach (var panel in panels) {
@@ -67,13 +82,9 @@ namespace ExtendedEditorWindows {
             OnCreate();
             
         }
-        
-        protected static void OpenWindow(string title, bool utility = false, bool focus = true) {
-            GetWindow<T>(utility, title, focus).Show();
-        }
 
         protected static void CloseWindow() {
-            GetWindow<T>().Close();
+            Window.Close();
         }
 
         protected VisualElement<VisualElement> VisualElement(string elementName) {

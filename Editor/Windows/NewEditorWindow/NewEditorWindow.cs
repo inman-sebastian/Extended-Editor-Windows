@@ -17,10 +17,11 @@ public class NewEditorWindow : ExtendedEditorWindow<NewEditorWindow> {
 
     private string _filePath;
     protected override List<Panel> panels => new List<Panel>();
+
+    protected override string title => "New Editor Window";
     
-    
-    [MenuItem("Assets/Create/Extended Editor Window", false, 51)]
-    public static void Open() => OpenWindow("New Editor Window", true);
+    [MenuItem("Assets/Create/Editor Window")]
+    public static void OnOpen() => OpenWindow();
 
     protected override void OnCreate() {
 
@@ -90,15 +91,17 @@ public class NewEditorWindow : ExtendedEditorWindow<NewEditorWindow> {
     private async Task GenerateScriptFile() {
         
         await FileGenerator.Generate($"{_filePath}.cs", new [] {
+            "using UnityEditor;",
             "using UnityEngine;",
             "using ExtendedEditorWindows;",
             "",
             "public class "+_windowFileName+" : ExtendedEditorWindow<"+_windowFileName+"> {",
             "",
+            "    protected override string title => \""+_windowTitle+"\";",
             "    protected override List<Panel> panels => new List<Panel>();",
             "",
-            "    [UnityEditor.MenuItem(\"" + _windowMenuPath + "\")]",
-            "    public static void Open() => OpenWindow(\""+_windowTitle+"\");",
+            "    [MenuItem(\"" + _windowMenuPath + "\")]",
+            "    public static void OnOpen() => OpenWindow();",
             "",
             "    protected override void OnCreate() {",
             "",
