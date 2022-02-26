@@ -1,11 +1,19 @@
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace ExtendedEditorWindows {
 
+    public struct Panel {
+        public Type type;
+        public Docker.DockPosition position;
+    }
+
     public abstract class ExtendedEditorWindow<T> : EditorWindow where T : EditorWindow {
+        
+        private bool _loadedPanels = false;
 
         private readonly string[] Stylesheets = {
             "Packages/com.sebastian-inman.extended-editor-windows/Editor/Styles/variables.uss",
@@ -16,6 +24,23 @@ namespace ExtendedEditorWindows {
             "Packages/com.sebastian-inman.extended-editor-windows/Editor/Styles/colorfield.uss",
             "Packages/com.sebastian-inman.extended-editor-windows/Editor/Styles/helpbox.uss"
         };
+
+        protected abstract List<Panel> panels { get; }
+        
+        private void OnGUI() {
+            
+            if (panels.Count <= 0 || _loadedPanels) return;
+            
+            foreach (var panel in panels) {
+                var window = GetWindow(panel.type);
+                this.Dock(window, panel.position);
+            }
+
+            _loadedPanels = true;
+
+            OnUpdate();
+
+        }
 
         private void CreateGUI() {
 
@@ -39,7 +64,7 @@ namespace ExtendedEditorWindows {
             // Add the stylesheet for this editor window.
             rootVisualElement.styleSheets.Add(editorStyleSheet);
 
-            Initialize();
+            OnCreate();
             
         }
         
@@ -99,7 +124,9 @@ namespace ExtendedEditorWindows {
             }
         }
 
-        protected abstract void Initialize();
+        protected virtual void OnCreate() { }
+        
+        protected virtual void OnUpdate() { }
 
     }
 

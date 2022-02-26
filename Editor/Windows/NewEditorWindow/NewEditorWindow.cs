@@ -1,11 +1,9 @@
 ﻿using UnityEditor;
-using System.Threading.Tasks;
 using ExtendedEditorWindows;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 public class NewEditorWindow : ExtendedEditorWindow<NewEditorWindow> {
-        
-    [MenuItem("Assets/Create/Extended Editor Window", false, 51)]
-    public static void Open() => OpenWindow("New Editor Window", true);
 
     private bool _busy = false;
 
@@ -18,8 +16,13 @@ public class NewEditorWindow : ExtendedEditorWindow<NewEditorWindow> {
     private Button _createButton;
 
     private string _filePath;
+    protected override List<Panel> panels => new List<Panel>();
+    
+    
+    [MenuItem("Assets/Create/Extended Editor Window", false, 51)]
+    public static void Open() => OpenWindow("New Editor Window", true);
 
-    protected override void Initialize() {
+    protected override void OnCreate() {
 
         _createButton = Button("CreateEditorWindow", button => Generate());
         _createButton.enabled = false;
@@ -36,7 +39,7 @@ public class NewEditorWindow : ExtendedEditorWindow<NewEditorWindow> {
 
     }
 
-    private void OnGUI() {
+    protected override void OnUpdate() {
         
         _createButton.enabled = true;
 
@@ -89,14 +92,22 @@ public class NewEditorWindow : ExtendedEditorWindow<NewEditorWindow> {
         await FileGenerator.Generate($"{_filePath}.cs", new [] {
             "using UnityEngine;",
             "using ExtendedEditorWindows;",
+            "",
             "public class "+_windowFileName+" : ExtendedEditorWindow<"+_windowFileName+"> {",
+            "",
+            "    protected override List<Panel> panels => new List<Panel>();",
+            "",
             "    [UnityEditor.MenuItem(\"" + _windowMenuPath + "\")]",
             "    public static void Open() => OpenWindow(\""+_windowTitle+"\");",
-            "    protected override void Initialize() {",
+            "",
+            "    protected override void OnCreate() {",
+            "",
             "        Field(\"ExampleInput\", \"\", field => {",
             "            Label(\"ExampleLabel\").text = field.value;",
             "        });",
+            "",
             "    }",
+            "",
             "}"
         });
 
@@ -118,10 +129,12 @@ public class NewEditorWindow : ExtendedEditorWindow<NewEditorWindow> {
         await FileGenerator.Generate($"{_filePath}.uxml", new [] {
             "<?xml version=\"1.0\" encoding=\"utf-8\"?>",
             "<UXML xmlns=\"UnityEngine.UIElements\" xmlns:Editor=\"UnityEditor.UIElements\" class=\"h-full\">",
+            "",
             "    <VisualElement class=\"flex-1 flex flex-col\">",
             "        <TextField name=\"ExampleInput\" label=\"Example Text Field\" class=\"mb-16\" />",
             "        <Label name=\"ExampleLabel\" />",
             "    </VisualElement>",
+            "",
             "</UXML>"
         });
 
