@@ -59,11 +59,9 @@ namespace ExtendedEditorWindows {
                 
                 OnReady();
                 
-            } else {
-                
-                OnUpdate();
-                
             }
+            
+            OnUpdate();
 
         }
 
