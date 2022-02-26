@@ -39,6 +39,12 @@ namespace ExtendedEditorWindows {
         }
 
         private void OnGUI() {
+            
+            if (!_isReady) {
+                titleContent = new GUIContent { text = title };
+                _isReady = true;
+                OnReady();
+            }
 
             if (panels.Count > 0 && !_loadedPanels) {
                 
@@ -49,14 +55,6 @@ namespace ExtendedEditorWindows {
 
                 _loadedPanels = true;
                 
-            }
-
-            if (!_isReady) {
-                titleContent = new GUIContent {
-                    text = title
-                };
-                OnReady();
-                _isReady = true;
             }
 
             OnUpdate();
