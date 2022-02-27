@@ -134,10 +134,12 @@ namespace ExtendedEditorWindows {
         public ObjectField<TAssetType> ObjectField<TAssetType>(string fieldName, EventCallback<ObjectField<TAssetType>> changeEvent) where TAssetType : class {
             return new ObjectField<TAssetType>(fieldName, changeEvent, rootVisualElement);
         }
+        
+        public Button Button(string buttonName) {
+            return new Button(buttonName, rootVisualElement);
+        }
 
-        public Button Button(
-            string buttonName, 
-            Action<Button> clickEvent) {
+        public Button Button(string buttonName, Action<Button> clickEvent) {
             return new Button(buttonName, clickEvent, rootVisualElement);
         }
 
