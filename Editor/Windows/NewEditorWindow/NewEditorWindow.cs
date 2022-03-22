@@ -89,6 +89,7 @@ public class NewEditorWindow : ExtendedEditorWindow<NewEditorWindow> {
     private async Task GenerateScriptFile() {
         
         await FileGenerator.Generate($"{_filePath}.cs", new [] {
+            "using System;",
             "using UnityEditor;",
             "using UnityEngine;",
             "using ExtendedEditorWindows;",
